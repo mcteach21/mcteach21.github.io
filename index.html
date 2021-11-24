@@ -71,8 +71,7 @@
 
                         <div class="row">
                         <div class="col-md-9 mb-md-0 mb-5">
-                            <form id="contact-form" name="contact-form" 
-                                action="https://mc69.go.yj.fr/mailit.php" method="POST">
+                            <form id="contact-form" name="contact-form">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="md-form mb-0">
@@ -110,7 +109,7 @@
                             </form>
 
                             <div class="float-right">
-                                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                                <a class="btn btn-primary" id="contact-form-btn">Send</a>
                             </div>
                             <div class="status"></div>
                         </div>
@@ -166,6 +165,28 @@
                 $('.nav-link').click(function(){
                     if($(navbarToggler).css('display')=='block')
                         $(navbarToggler).trigger('click');
+                });
+
+
+                $('#contact-form-btn').click(function(){
+
+                    var formData = {
+                      name: $("#name").val(),
+                      email: $("#email").val(),
+                      subject: $("#subject").val(),
+                      message: $("#message").val(),
+                    };
+
+                    $.ajax({
+                      type: "POST",
+                      url: "https://mc69.go.yj.fr/mailit.php",
+                      data: formData,
+                      dataType: "json",
+                      encode: true,
+                    }).done(function (data) {
+                      alert(data);
+                    });
+
                 });
             });
 
