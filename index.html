@@ -179,26 +179,28 @@
                       encode: true,
                     }).done(function (data) {
                         console.log('done : '+data.status);
-                        $('#contact-form').trigger("reset");
-
+                       
                         if(data.status=='success'){
-                            $("#contact-form").html(
+                            $("#contact-form-status").html(
                                   '<div class="alert alert-success">' + data.message + "</div>"
                             );
+
+                            $('#contact-form').trigger("reset");
                         }else{
-                            $("#contact-form").html(
+                            $("#contact-form-status").html(
                                   '<div class="alert alert-warning">' + data.message + "</div>"
                             );
                         }
                     })
                     .fail(function (data) {
-                        console.log('fail : '+data);
-                        $("#contact-form").html(
+                        console.log('fail : '+data.message);
+                        $("#contact-form-status").html(
                           '<div class="alert alert-danger">Could not reach server, please try again later.</div>'
                         );
-                    }).complete(function (data) {
-                        $('#contact-form').trigger("reset");
                     });
+                    // .complete(function (data) {
+                    //     $('#contact-form').trigger("reset");
+                    // });
 
                     event.preventDefault();
                 });
