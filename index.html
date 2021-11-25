@@ -115,24 +115,10 @@
                             <button type="submit" class="btn btn-success">
                               Submit
                             </button>
-                            
+
                             <div class="status"></div>
                         </div>
                     </div>
-
-                        <!-- modify this form HTML and place wherever you want your form 
-                        <form action="https://formspree.io/f/xrgjzbdr" method="POST">
-                          <label>
-                            Your email:
-                            <input type="email" name="_replyto">
-                          </label>
-                          <label>
-                            Your message:
-                            <textarea name="message"></textarea>
-                          </label>
-                          <button type="submit">Send</button>
-                        </form>
-                        -->
                     </div>
                 </div>
             </div>
@@ -177,6 +163,8 @@
 
                 $("#contact-form").submit(function (event) {
 
+                    alert('submit!!');
+
                     var formData = {
                       name: $("#name").val(),
                       email: $("#email").val(),
@@ -186,7 +174,7 @@
 
                     $.ajax({
                       type: "POST",
-                      url: "https://mc69.go.yj.fr/mailit.php",
+                      url: "https://mc69.go.yj.fr/mailit00.php",
                       data: formData,
                       dataType: "json",
                       encode: true,
