@@ -108,9 +108,14 @@
                                 </div>
                             </form>
 
-                            <div class="float-right">
+<!--                             <div class="float-right">
                                 <a class="btn btn-primary" id="contact-form-btn">Send</a>
-                            </div>
+                            </div> -->
+
+                            <button type="submit" class="btn btn-success">
+                              Submit
+                            </button>
+                            
                             <div class="status"></div>
                         </div>
                     </div>
@@ -170,7 +175,7 @@
                 });
 
 
-                $('#contact-form-btn').click(function(){
+                $("#contact-form").submit(function (event) {
 
                     var formData = {
                       name: $("#name").val(),
@@ -186,8 +191,26 @@
                       dataType: "json",
                       encode: true,
                     }).done(function (data) {
-                      alert(data);
+                        console.log('done!');
+                        $('#contact-form').trigger("reset");
+
+                        if(data.success){
+                            $("#contact-form").html(
+                                  '<div class="alert alert-success">' + data.message + "</div>"
+                            );
+                        }else{
+                            $("#contact-form").html(
+                                  '<div class="alert alert-warning">' + data.message + "</div>"
+                            );
+                        }
+                    })
+                    .fail(function (data) {
+                        $("#contact-form").html(
+                          '<div class="alert alert-danger">Could not reach server, please try again later.</div>'
+                        );
                     });
+
+                    event.preventDefault();
 
                 });
             });
