@@ -108,12 +108,12 @@
                                 </div>
                             </form>
 
-<!--                             <div class="float-right">
+                            <div class="float-right">
                                 <a class="btn btn-primary" id="contact-form-btn">Send</a>
-                            </div> -->
+                            </div>
 
                             <button type="submit" class="btn btn-success">
-                              Submit
+                              Send
                             </button>
 
                             <div class="status"></div>
@@ -141,13 +141,19 @@
 
         <hr class="mt-last">
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
 
         <script type="text/javascript">
             $(function(){
+
+                alert('ok ready!');
+
+                $('#contact-form-btn').click(function(e){
+                    alert('submit?');
+                    e.preventDefault();
+                });
     
                 $('.js-scroll-trigger').click(function(){
                     $('.js-scroll-trigger').removeClass('active');
@@ -159,7 +165,6 @@
                     if($(navbarToggler).css('display')=='block')
                         $(navbarToggler).trigger('click');
                 });
-
 
                 $("#contact-form").submit(function (event) {
 
@@ -174,7 +179,7 @@
 
                     $.ajax({
                       type: "POST",
-                      url: "https://mc69.go.yj.fr/mailit00.php",
+                      url: "https://mc69.go.yj.fr/mailit.php",
                       data: formData,
                       dataType: "json",
                       encode: true,
