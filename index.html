@@ -178,10 +178,10 @@
                       dataType: "json",
                       encode: true,
                     }).done(function (data) {
-                        console.log('done : '+data);
+                        console.log('done : '+data.status);
                         $('#contact-form').trigger("reset");
 
-                        if(data.success){
+                        if(data.status=='success'){
                             $("#contact-form").html(
                                   '<div class="alert alert-success">' + data.message + "</div>"
                             );
